@@ -1,9 +1,12 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
+// 使用环境变量，更灵活
+const baseURL = import.meta.env.VITE_API_BASE_URL || '/api'
+
 const request = axios.create({
-  baseURL: '/api',
-  timeout: 30000
+  baseURL: baseURL,
+  timeout: 60000  // 延长超时时间，更稳定
 })
 
 // 请求拦截器 - 添加token
@@ -12,9 +15,9 @@ request.interceptors.request.use(
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
-      console.log('请求携带token:', config.url)
+      // console.log('请求携带token:', config.url)
     } else {
-      console.log('请求无token:', config.url)
+      // console.log('请求无token:', config.url)
     }
     return config
   },
@@ -29,7 +32,6 @@ request.interceptors.response.use(
   response => {
     const res = response.data
     if (res.code !== 200) {
-      // 处理业务错误
       if (res.code === 401) {
         ElMessage.error('登录已过期，请重新登录')
         localStorage.removeItem('token')
@@ -54,7 +56,7 @@ request.interceptors.response.use(
           window.location.href = '/login'
           break
         case 403:
-          ElMessage.error('权限不足，请确认已登录')
+          ElMessage.error('权限不足')
           break
         case 404:
           ElMessage.error('请求的资源不存在')
