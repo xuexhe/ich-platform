@@ -1,0 +1,44 @@
+{
+  "properties": [
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "JWT签名密钥"
+    },
+    {
+      "name": "jwt.expire",
+      "type": "java.lang.Long",
+      "description": "JWT过期时间（毫秒）"
+    },
+    {
+      "name": "upload.path",
+      "type": "java.lang.String",
+      "description": "文件上传路径"
+    },
+    {
+      "name": "upload.url",
+      "type": "java.lang.String",
+      "description": "文件访问URL前缀"
+    },
+    {
+      "name": "cors.allowed-origins",
+      "type": "java.util.List",
+      "description": "CORS允许的源"
+    },
+    {
+      "name": "ai.tongyi.api-key",
+      "type": "java.lang.String",
+      "description": "通义千问 API Key"
+    },
+    {
+      "name": "ai.tongyi.model",
+      "type": "java.lang.String",
+      "description": "通义千问模型名称"
+    },
+    {
+      "name": "ai.tongyi.url",
+      "type": "java.lang.String",
+      "description": "通义千问 API 地址"
+    }
+  ]
+}
